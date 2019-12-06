@@ -1,0 +1,104 @@
+{
+	"info": {
+		"_postman_id": "5b13f731-9841-439b-b6cf-b2d3a351c834",
+		"name": "执行顺序演示",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "18c3544e-ff0a-4e7f-a611-561c45c84c41",
+						"exec": [
+							"pm.test(\"断言username 等于 eric\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.data.username).to.eql(\"eric\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"断言相应体包含postman-echo.com\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"postman-echo.com\");",
+							"});",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7a392ca8-f331-4b01-bb07-f46f40b14c92",
+						"exec": [
+							"console.log(\"request 3 start\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\n\t\"password\": 123,\n\t\n\t\"username\": \"eric\"\n\t\n\t\n\t\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://postman-echo.com/post",
+					"protocol": "https",
+					"host": [
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "0c893ec4-097b-4082-bc18-ecfebde258df",
+				"type": "text/javascript",
+				"exec": [
+					"console.log(\"------------集合开始-------------------\")"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "58d94ac8-a2ef-4dac-a789-a3be0bc25b63",
+				"type": "text/javascript",
+				"exec": [
+					"console.log(\"------------集合结束-------------------\")"
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
